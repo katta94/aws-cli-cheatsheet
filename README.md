@@ -781,3 +781,25 @@ aws iam list-groups-for-user --user-name qa-bob
 aws iam detach-group-policy --group-name business-ro --policy-arn arn:aws:iam::aws:policy/DynamoDBFullAccess
 aws iam attach-group-policy --group-name business-ro --policy-arn arn:aws:iam::aws:policy/DynamoDBFullAccess
 ```
+
+EKS- kubectl cli
+
+set connection to eks 
+aws eks --region <region-code> update-kubeconfig --name <cluster_name>
+
+Test above config
+kubectl get svc
+
+switch to a namespace
+kubectl config set-context --current --namespace=<namespace> 
+
+Check events in a namespace
+kubectl get events --namespace=my-namespace
+
+check logs of a pod
+kubectl logs pod-name
+
+
+
+
+
