@@ -799,6 +799,12 @@ kubectl get events --namespace=my-namespace
 check logs of a pod
 kubectl logs pod-name
 
+delete all pods in a namespace 
+kubectl delete --all pods --namespace=<insert-some-namespace-name>
+
+Delete a namespace and all resources (pods,configmaps,service-accounts,services) in it.
+kubectl delete namespaces <insert-some-namespace-name>
+
 
 
 
