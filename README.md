@@ -804,6 +804,31 @@ kubectl delete --all pods --namespace=<insert-some-namespace-name>
 
 Delete a namespace and all resources (pods,configmaps,service-accounts,services) in it.
 kubectl delete namespaces <insert-some-namespace-name>
+    
+    
+ECR (Elastic Container Registry)
+
+#Login to ECR 
+docker login -u AWS -p $(aws ecr get-login-password --region <Region-name>) <Accout_id>.dkr.ecr.<Region-name>.amazonaws.com 
+    or
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+
+#pull image from internet docker hub
+docker pull gcr.io/datadoghq/agent:7.23.1
+
+#Tag the image as you like
+docker tag gcr.io/datadoghq/agent:7.23.1 <Accout_id>.dkr.ecr.<Region-name>.amazonaws.com/gcr.io/datadoghq/agent:7.23.1
+
+#create a ECR repository
+aws ecr create-repository \
+    --repository-name gcr.io/datadoghq/agent \
+    --image-scanning-configuration scanOnPush=true \
+    --region <Region-name>
+
+
+#Push the image to repository
+docker push <Accout_id>.dkr.ecr.<Region-name>.amazonaws.com/gcr.io/datadoghq/agent:7.23.1
+
 
 
 
